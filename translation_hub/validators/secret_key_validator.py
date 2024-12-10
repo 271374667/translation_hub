@@ -1,4 +1,4 @@
-from translatehub.validators.validator import Validator
+from translation_hub.validators.validator import Validator
 
 
 class EmptyStringValidator(Validator):

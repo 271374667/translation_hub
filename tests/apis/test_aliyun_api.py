@@ -3,10 +3,10 @@ import json
 import pytest
 import os
 from unittest.mock import patch
-from translatehub.apis.aliyun_api import AliyunApi
-from translatehub.core.enums import Languages
-from translatehub import exceptions
-from translatehub.config import cfg
+from translation_hub.apis.aliyun_api import AliyunApi
+from translation_hub.core.enums import Languages
+from translation_hub import exceptions
+from translation_hub.config import cfg
 
 
 class TestAliyunApi:
@@ -61,7 +61,7 @@ class TestAliyunApi:
             "Message": "语种拼写错误",
             "RequestId": "test-error-id",
         }
-        with patch("translatehub.apis.aliyun_api.request") as mock_request:
+        with patch("translation_hub.apis.aliyun_api.request") as mock_request:
             mock_request.return_value = json.dumps(error_response)
             with pytest.raises(exceptions.ServerError):
                 aliyun_api.translate("Hello", "random", Languages.CHINESE)

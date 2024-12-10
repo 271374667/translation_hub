@@ -1,12 +1,12 @@
-from translatehub import exceptions
-from translatehub.api import Api
+from translation_hub import exceptions
+from translation_hub.api import Api
 import re
 import html
 from urllib import parse
 from urllib import request
 import urllib.error
-from translatehub.core.enums import Languages
-from translatehub.validator_handler import (
+from translation_hub.core.enums import Languages
+from translation_hub.validator_handler import (
     ContentValidatorHandler,
 )
 

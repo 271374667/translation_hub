@@ -1,5 +1,5 @@
 [project]
-name = "translatehub"
+name = "translation_hub"
 version = "0.1.0"
 description = "一个集成国内外翻译服务的第三方库，方便开发者快速集成翻译功能"
 authors = [
@@ -8,6 +8,10 @@ authors = [
 dependencies = []
 readme = "README.md"
 requires-python = ">= 3.10"
+
+[project.urls]
+"Homepage" = "https://github.com/271374667/translation_hub"
+"Source Code" = "https://github.com/271374667/translation_hub"
 
 [build-system]
 requires = ["hatchling"]

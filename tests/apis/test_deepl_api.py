@@ -4,11 +4,11 @@ import urllib
 import urllib.error
 
 import pytest
-from translatehub.apis.deepl_api import DeeplApi
-from translatehub.core.enums import Languages
+from translation_hub.apis.deepl_api import DeeplApi
+from translation_hub.core.enums import Languages
 from unittest.mock import patch
-from translatehub import exceptions
-from translatehub.config import cfg
+from translation_hub import exceptions
+from translation_hub.config import cfg
 
 
 @pytest.fixture
@@ -42,7 +42,7 @@ class TestDeeplApi:
             DeeplApi()
 
     def test_translates_text_correctly(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"translations": [{"text": "你好，世界"}]}
             )
@@ -58,7 +58,7 @@ class TestDeeplApi:
         assert result == "你好，世界"
 
     def test_translates_text_correctly_with_auto_language(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {
                     "translations": [
@@ -72,7 +72,7 @@ class TestDeeplApi:
             assert result == "Hello, world."
 
     def test_handles_key_error(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.return_value = "{}"
             with pytest.raises(exceptions.ResponseError):
                 deepl_api.translate(
@@ -80,7 +80,7 @@ class TestDeeplApi:
                 )
 
     def test_handles_json_decode_error(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.return_value = "Invalid JSON"
             with pytest.raises(exceptions.JsonDecodeError):
                 deepl_api.translate(
@@ -88,7 +88,7 @@ class TestDeeplApi:
                 )
 
     def test_handles_generic_exception(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.side_effect = Exception("Some error")
             with pytest.raises(exceptions.UnknownError):
                 deepl_api.translate(
@@ -96,7 +96,7 @@ class TestDeeplApi:
                 )
 
     def test_translates_with_string_language(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"translations": [{"text": "你好，世界"}]}
             )
@@ -104,7 +104,7 @@ class TestDeeplApi:
             assert result == "你好，世界"
 
     def test_handles_request_error_403(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.side_effect = urllib.error.HTTPError(
                 url="", code=403, msg="", hdrs={}, fp=None
             )
@@ -114,7 +114,7 @@ class TestDeeplApi:
                 )
 
     def test_handles_request_error_429(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.side_effect = urllib.error.HTTPError(
                 url="", code=429, msg="", hdrs={}, fp=None
             )
@@ -124,7 +124,7 @@ class TestDeeplApi:
                 )
 
     def test_handles_request_error_456(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.side_effect = urllib.error.HTTPError(
                 url="", code=456, msg="", hdrs={}, fp=None
             )
@@ -134,7 +134,7 @@ class TestDeeplApi:
                 )
 
     def test_handles_request_error_500(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.side_effect = urllib.error.HTTPError(
                 url="", code=500, msg="", hdrs={}, fp=None
             )
@@ -144,7 +144,7 @@ class TestDeeplApi:
                 )
 
     def test_handles_unknown_error(self, deepl_api):
-        with patch("translatehub.apis.deepl_api.request") as mock_request:
+        with patch("translation_hub.apis.deepl_api.request") as mock_request:
             mock_request.side_effect = urllib.error.HTTPError(
                 url="", code=999, msg="", hdrs={}, fp=None
             )

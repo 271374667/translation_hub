@@ -5,11 +5,11 @@ import urllib
 import urllib.error
 
 import pytest
-from translatehub.apis.tencent_api import TencentApi
-from translatehub.core.enums import Languages
+from translation_hub.apis.tencent_api import TencentApi
+from translation_hub.core.enums import Languages
 from unittest.mock import patch, MagicMock
-from translatehub import exceptions
-from translatehub.config import cfg
+from translation_hub import exceptions
+from translation_hub.config import cfg
 
 
 @pytest.fixture
@@ -64,7 +64,7 @@ class TestTencentApi:
 
     def test_request_error(self, tencent_api):
         with patch(
-            "translatehub.apis.tencent_api.urllib.request.urlopen"
+            "translation_hub.apis.tencent_api.urllib.request.urlopen"
         ) as mock_urlopen:
             # 创建一个模拟的响应对象
             # 配置mock_urlopen的返回值，以支持with语句
@@ -78,7 +78,7 @@ class TestTencentApi:
 
     def test_handles_server_error(self, tencent_api):
         with patch(
-            "translatehub.apis.tencent_api.urllib.request.urlopen"
+            "translation_hub.apis.tencent_api.urllib.request.urlopen"
         ) as mock_urlopen:
             # 创建一个模拟的上下文管理器对象
             mock_cm = MagicMock()
@@ -115,7 +115,7 @@ class TestTencentApi:
 
     def test_handles_json_decode_error(self, tencent_api):
         with patch(
-            "translatehub.apis.tencent_api.urllib.request.urlopen"
+            "translation_hub.apis.tencent_api.urllib.request.urlopen"
         ) as mock_urlopen:
             # 创建一个模拟的上下文管理器对象
             mock_cm = MagicMock()

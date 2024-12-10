@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod
-from translatehub.core.enums import Languages
+from translation_hub.core.enums import Languages
 
 
 class Api(ABC):

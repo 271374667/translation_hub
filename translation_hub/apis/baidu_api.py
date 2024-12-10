@@ -1,17 +1,17 @@
-from translatehub.api import Api
-from translatehub.core.enums import Languages
-from translatehub.utils.requests import request
-from translatehub import exceptions
+from translation_hub.api import Api
+from translation_hub.core.enums import Languages
+from translation_hub.utils.requests import request
+from translation_hub import exceptions
 from hashlib import md5
 import random
 import json
 import logging
-from translatehub.validator_handler import (
+from translation_hub.validator_handler import (
     SecretKeyValidatorHandler,
     ContentValidatorHandler,
 )
 import os
-from translatehub.config import cfg
+from translation_hub.config import cfg
 
 
 class BaiduAPI(Api):

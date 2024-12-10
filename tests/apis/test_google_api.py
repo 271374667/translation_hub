@@ -1,5 +1,5 @@
-from translatehub.apis.google_api import GoogleApi
-from translatehub.core.enums import Languages
+from translation_hub.apis.google_api import GoogleApi
+from translation_hub.core.enums import Languages
 import pytest
 
 

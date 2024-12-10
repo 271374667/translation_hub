@@ -1,5 +1,5 @@
-from translatehub.validators.validator import Validator
-from translatehub.validators import secret_key_validator, content_validator
+from translation_hub.validators.validator import Validator
+from translation_hub.validators import secret_key_validator, content_validator
 from abc import ABC
 
 

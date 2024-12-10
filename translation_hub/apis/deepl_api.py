@@ -1,12 +1,12 @@
 import json
 import os
 
-from translatehub import exceptions
-from translatehub.api import Api
-from translatehub.config import cfg
-from translatehub.core.enums import Languages
-from translatehub.utils.requests import request
-from translatehub.validator_handler import (
+from translation_hub import exceptions
+from translation_hub.api import Api
+from translation_hub.config import cfg
+from translation_hub.core.enums import Languages
+from translation_hub.utils.requests import request
+from translation_hub.validator_handler import (
     SecretKeyValidatorHandler,
     ContentValidatorHandler,
 )

@@ -1,11 +1,11 @@
 import json
 import os
 import pytest
-from translatehub.apis.baidu_api import BaiduAPI
-from translatehub.core.enums import Languages
+from translation_hub.apis.baidu_api import BaiduAPI
+from translation_hub.core.enums import Languages
 from unittest.mock import patch
-from translatehub import exceptions
-from translatehub.config import cfg
+from translation_hub import exceptions
+from translation_hub.config import cfg
 
 
 @pytest.fixture
@@ -46,7 +46,7 @@ class TestBaiduAPI:
             BaiduAPI()
 
     def test_translates_text_correctly(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {
                     "from": "en",
@@ -68,31 +68,31 @@ class TestBaiduAPI:
             baidu_api.translate("", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_key_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = "{}"
             with pytest.raises(exceptions.ResponseError):
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_json_decode_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = "Invalid JSON"
             with pytest.raises(exceptions.JsonDecodeError):
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_generic_exception(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.side_effect = Exception("Some error")
             with pytest.raises(exceptions.RequestError):
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_translates_with_string_language(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps({"trans_result": [{"dst": "你好"}]})
             result = baidu_api.translate("Hello", "en", "zh")
             assert result == "你好"
 
     def test_handles_request_timeout_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "52001", "error_msg": "请求超时"}
             )
@@ -100,7 +100,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_system_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "52002", "error_msg": "系统错误"}
             )
@@ -108,7 +108,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_unauthorized_user_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "52003", "error_msg": "未授权用户"}
             )
@@ -116,7 +116,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_missing_parameter_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "54000", "error_msg": "必填参数为空"}
             )
@@ -124,7 +124,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_signature_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "54001", "error_msg": "签名错误"}
             )
@@ -132,7 +132,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_rate_limit_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "54003", "error_msg": "访问频率受限"}
             )
@@ -140,7 +140,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_insufficient_balance_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "54004", "error_msg": "账户余额不足"}
             )
@@ -148,7 +148,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_frequent_long_query_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "54005", "error_msg": "长query请求频繁"}
             )
@@ -156,7 +156,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_invalid_client_ip_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "58000", "error_msg": "客户端IP非法"}
             )
@@ -164,7 +164,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_unsupported_language_direction_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "58001", "error_msg": "译文语言方向不支持"}
             )
@@ -172,7 +172,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_service_closed_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "58002", "error_msg": "服务当前已关闭"}
             )
@@ -180,7 +180,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_ip_banned_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "58003", "error_msg": "此IP已被封禁"}
             )
@@ -188,7 +188,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_authentication_failed_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "90107", "error_msg": "认证未通过或未生效"}
             )
@@ -196,7 +196,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_security_risk_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "20003", "error_msg": "请求内容存在安全风险"}
             )
@@ -204,7 +204,7 @@ class TestBaiduAPI:
                 baidu_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
 
     def test_handles_unknown_error(self, baidu_api):
-        with patch("translatehub.apis.baidu_api.request") as mock_request:
+        with patch("translation_hub.apis.baidu_api.request") as mock_request:
             mock_request.return_value = json.dumps(
                 {"error_code": "99999", "error_msg": "未知错误"}
             )

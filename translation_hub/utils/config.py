@@ -6,7 +6,7 @@ from copy import deepcopy
 from enum import Enum
 from pathlib import Path
 from typing import List
-from translatehub.core.paths import CONFIG_FILE
+from translation_hub.core.paths import CONFIG_FILE
 
 
 def exception_handler(*default):

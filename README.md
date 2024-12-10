@@ -24,7 +24,7 @@
 ## Installation 安装说明
 
 ```shell
-pip install translatehub
+pip install translation-hub
 ```
 
 ## QuickStart 快速开始
@@ -34,18 +34,19 @@ pip install translatehub
 同时支持直接传入,本地存储秘钥以及从环境变量获取秘钥
 
 ```python
-from translatehub import BaiduAPI
+from translation_hub import BaiduAPI
 
-translator = BaiduAPI('your appid', 'secret_key')
-result = translator.translate('hello')
+translator = BaiduAPI("your appid", "secret_key")
+result = translator.translate("hello")
 
 print(result)  # 你好
+
 ```
 
 自定义翻译语言,使用 `Languages` 枚举类来实现屏蔽各大翻译api语言代码
 
 ```python
-from translatehub import GoogleApi, Languages
+from translation_hub import GoogleApi, Languages
 
 # 谷歌无需传入秘钥
 translator = GoogleApi()

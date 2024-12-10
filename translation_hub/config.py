@@ -1,5 +1,5 @@
-from translatehub.utils.config import QConfig, ConfigItem, qconfig
-from translatehub.core.paths import CONFIG_FILE
+from translation_hub.utils.config import QConfig, ConfigItem, qconfig
+from translation_hub.core.paths import CONFIG_FILE
 import logging
 
 
