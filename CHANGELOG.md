@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.15](https://github.com/271374667/translatehub/compare/v0.2.11...v0.2.15) - 2024-12-10
+
+- ✨ feat(python-publish.yml)：添加对发布事件的支持以触发工作流 [`772f393`](https://github.com/271374667/translatehub/commit/772f393364e022955d302bd756b119955f8b4be5)
+- fix: 修复了打包之后只有INFO包的错误 [`9b016eb`](https://github.com/271374667/translatehub/commit/9b016eb3f1b7d68524358879532a990923b91108)
+- 📝 docs(CHANGELOG.md)：更新CHANGELOG以记录v0.2.11版本的变化和改进 [`c2e8d0c`](https://github.com/271374667/translatehub/commit/c2e8d0c8360d7e3767df6d497bce5639c8d165f0)
+
 ## [v0.2.11](https://github.com/271374667/translatehub/compare/v0.2.6...v0.2.11) - 2024-12-10
 
 - ⬆️ 升级(pyproject.toml)：将项目版本从0.2.7升级到0.2.11以反映新功能和修复。 [`154471b`](https://github.com/271374667/translatehub/commit/154471b4804a783147cac807065599e3e80472fd)
