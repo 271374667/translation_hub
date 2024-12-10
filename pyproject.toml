@@ -28,3 +28,9 @@ allow-direct-references = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["translation_hub"]
+
+[tool.hatch.build]
+include = [
+    "translation_hub/**/*",
+    "README.md",
+]
