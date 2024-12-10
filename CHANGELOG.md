@@ -5,6 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.2.11](https://github.com/271374667/translatehub/compare/v0.2.6...v0.2.11) - 2024-12-10
+
+- ⬆️ 升级(pyproject.toml)：将项目版本从0.2.7升级到0.2.11以反映新功能和修复。 [`154471b`](https://github.com/271374667/translatehub/commit/154471b4804a783147cac807065599e3e80472fd)
+- ♻️ refactor(pyproject.toml)：将包名从translatehub更改为translation_hub以保持一致性 [`ba63350`](https://github.com/271374667/translatehub/commit/ba6335084e5929494c4ffd1ed32f4f835dc33e2a)
+- 🔧 chore(python-publish.yml)：移除对release事件的支持 [`3ce7f93`](https://github.com/271374667/translatehub/commit/3ce7f93851b76ca6450af3abb49beca1813603c4)
+- ✨ workflow: 添加手动触发工作流的支持 [`809cdbb`](https://github.com/271374667/translatehub/commit/809cdbb5e5255fc3478422ad6edc17237ea95255)
+- 📝 docs：添加CHANGELOG.md文件以记录项目的显著变化 [`a38090f`](https://github.com/271374667/translatehub/commit/a38090f090a8876fba0bbf959703e58d79e58b95)
+
 ## v0.2.6 - 2024-12-10
 
 - ✅ test(test_deepl_api.py)：修复测试用例以正确获取Deepl API密钥 [`225caaa`](https://github.com/271374667/translatehub/commit/225caaa9de6c53f705b94e75222e89e5bc23c070)
