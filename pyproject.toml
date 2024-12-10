@@ -1,0 +1,26 @@
+[project]
+name = "translatehub"
+version = "0.1.0"
+description = "一个集成国内外翻译服务的第三方库，方便开发者快速集成翻译功能"
+authors = [
+    { name = "PythonImporter", email = "271374667@qq.com" }
+]
+dependencies = []
+readme = "README.md"
+requires-python = ">= 3.10"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.rye]
+managed = true
+dev-dependencies = [
+    "pytest>=8.3.4",
+]
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["translatehub"]
