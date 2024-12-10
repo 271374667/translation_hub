@@ -52,8 +52,31 @@ from translation_hub import GoogleApi, Languages
 translator = GoogleApi()
 
 # 自动检测后翻译成中文
-print(translator.translate("hello", Languages.AUTO, Languages.CHINESE))  # 你好
+print(translator.translate("hello", Languages.Auto, Languages.Chinese))  # 你好
 
 # 手动说明语言,然后翻译成日文
-print(translator.translate("hello", Languages.ENGLISH, Languages.Japanese))  # こんにちは
+print(translator.translate("hello", Languages.English, Languages.Japanese))  # こんにちは
+```
+
+## 支持的语言
+
+目前支持的通用语言如下:
+
+- 中文 Language.Chinese
+- 英语 Language.English
+- 日语 Language.Japanese
+- 韩语 Language.Korea
+- 俄语 Language.Russia
+- 自动选择 Language.Auto
+
+如果您需要其他语言，可以自行前往查看每一个翻译服务的支持语言,然后手动传入语言代码即可。比如
+    
+```python
+from translation_hub import DeeplApi
+
+deepl = DeeplApi("your api key")
+
+# 翻译成德语
+print(deepl.translate("hello", "EN", "DE"))  # Hallo
+
 ```
