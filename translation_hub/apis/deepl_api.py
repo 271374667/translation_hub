@@ -141,9 +141,3 @@ class DeeplApi(Api):
             f"Invalid API Key, please check and try again."
             f"current api_key: {api_key}"
         )
-
-if __name__ == '__main__':
-    deepl = DeeplApi()
-
-    # 翻译成德语
-    print(deepl.translate("hello", "EN", "DE"))  # Hallo
