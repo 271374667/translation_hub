@@ -54,13 +54,13 @@ class TestTencentApi:
 
     def test_translates_text_correctly(self, tencent_api):
         result = tencent_api.translate(
-            "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+            "Hello, world!", Languages.English, Languages.Chinese
         )
         assert result == "你好，世界！"
 
     def test_handles_invalid_content_error(self, tencent_api):
         with pytest.raises(exceptions.InvalidContentError):
-            tencent_api.translate("", Languages.ENGLISH, Languages.CHINESE)
+            tencent_api.translate("", Languages.English, Languages.Chinese)
 
     def test_request_error(self, tencent_api):
         with patch(
@@ -73,7 +73,7 @@ class TestTencentApi:
                     url="", code=403, msg="", hdrs=None, fp=None
                 )
                 tencent_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_server_error(self, tencent_api):
@@ -98,7 +98,7 @@ class TestTencentApi:
 
             with pytest.raises(exceptions.ServerError):
                 tencent_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_http_error(self, tencent_api):
@@ -110,7 +110,7 @@ class TestTencentApi:
         ):
             with pytest.raises(exceptions.RequestError):
                 tencent_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_json_decode_error(self, tencent_api):
@@ -125,18 +125,18 @@ class TestTencentApi:
 
             with pytest.raises(exceptions.JsonDecodeError):
                 tencent_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_generic_exception(self, tencent_api):
         with patch("urllib.request.urlopen", side_effect=Exception("Some error")):
             with pytest.raises(exceptions.UnknownError):
                 tencent_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_trans_language(self, tencent_api):
-        assert tencent_api._trans_language(Languages.ENGLISH) == "en"
+        assert tencent_api._trans_language(Languages.English) == "en"
         assert tencent_api._trans_language("en") == "en"
 
     def test_get_authorization(self, tencent_api):

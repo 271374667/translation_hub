@@ -12,30 +12,30 @@ class TestGoogleApi:
         """测试正常翻译流程"""
         # 中文翻译为日文
         result = google_api.translate(
-            "你吃饭了么?", Languages.CHINESE, Languages.Japanese
+            "你吃饭了么?", Languages.Chinese, Languages.Japanese
         )
         assert result == "食べましたか？"
 
         # 英文翻译为中文
         result = google_api.translate(
-            "about your situation", Languages.ENGLISH, Languages.CHINESE
+            "about your situation", Languages.English, Languages.Chinese
         )
         assert result == "关于你的情况"
 
         # 英语翻译成韩文
         result = google_api.translate(
-            "about your situation", Languages.ENGLISH, Languages.Korea
+            "about your situation", Languages.English, Languages.Korea
         )
         assert result == "당신의 상황에 대해서"
 
         # 英文翻译成俄文
         result = google_api.translate(
-            "about your situation", Languages.ENGLISH, Languages.RUSSIA
+            "about your situation", Languages.English, Languages.Russia
         )
         assert result == "о вашей ситуации"
 
         # 自动翻译成中文
         result = google_api.translate(
-            "about your situation", Languages.AUTO, Languages.CHINESE
+            "about your situation", Languages.Auto, Languages.Chinese
         )
         assert result == "关于你的情况"

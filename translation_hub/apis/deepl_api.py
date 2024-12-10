@@ -45,6 +45,7 @@ class DeeplApi(Api):
         secret_key_validator_handler = SecretKeyValidatorHandler()
         # 验证 API Key
         is_api_key_valid = secret_key_validator_handler.validate(self.api_key)
+        logging.debug(self.api_key)
 
         if not is_api_key_valid:
             raise exceptions.InvalidSecretKeyError(
@@ -55,8 +56,8 @@ class DeeplApi(Api):
     def translate(
         self,
         text: str,
-        source: Languages | str = Languages.ENGLISH,
-        target: Languages | str = Languages.CHINESE,
+        source: Languages | str = Languages.English,
+        target: Languages | str = Languages.Chinese,
     ) -> str:
         text = text.strip()
 
@@ -132,7 +133,7 @@ class DeeplApi(Api):
         if api_key:
             return api_key
 
-        api_key = cfg.get(cfg.BaiduSecretKey)
+        api_key = cfg.get(cfg.DeeplApiKey)
         if api_key:
             return api_key
 
@@ -140,3 +141,9 @@ class DeeplApi(Api):
             f"Invalid API Key, please check and try again."
             f"current api_key: {api_key}"
         )
+
+if __name__ == '__main__':
+    deepl = DeeplApi()
+
+    # 翻译成德语
+    print(deepl.translate("hello", "EN", "DE"))  # Hallo

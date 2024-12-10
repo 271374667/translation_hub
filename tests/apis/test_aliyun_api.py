@@ -51,7 +51,7 @@ class TestAliyunApi:
 
     def test_translate_successful(self, aliyun_api, mock_successful_response):
         """测试正常翻译流程"""
-        result = aliyun_api.translate("Hello", Languages.ENGLISH, Languages.CHINESE)
+        result = aliyun_api.translate("Hello", Languages.English, Languages.Chinese)
         assert result == "你好"
 
     def test_translate_server_error(self, aliyun_api):
@@ -64,10 +64,10 @@ class TestAliyunApi:
         with patch("translation_hub.apis.aliyun_api.request") as mock_request:
             mock_request.return_value = json.dumps(error_response)
             with pytest.raises(exceptions.ServerError):
-                aliyun_api.translate("Hello", "random", Languages.CHINESE)
+                aliyun_api.translate("Hello", "random", Languages.Chinese)
 
     def test_trans_language_with_enum(self, aliyun_api):
         """测试语言代码转换 - 枚举输入"""
-        assert aliyun_api._trans_language(Languages.CHINESE) == "zh"
-        assert aliyun_api._trans_language(Languages.ENGLISH) == "en"
+        assert aliyun_api._trans_language(Languages.Chinese) == "zh"
+        assert aliyun_api._trans_language(Languages.English) == "en"
         assert aliyun_api._trans_language(Languages.Japanese) == "ja"

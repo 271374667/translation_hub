@@ -212,8 +212,8 @@ class YoudaoApi(Api):
     def translate(
         self,
         text: str,
-        source: Languages | str = Languages.ENGLISH,
-        target: Languages | str = Languages.CHINESE,
+        source: Languages | str = Languages.English,
+        target: Languages | str = Languages.Chinese,
     ) -> str:
         text = text.strip()
 

@@ -47,13 +47,13 @@ class TestDeeplApi:
                 {"translations": [{"text": "你好，世界"}]}
             )
             result = deepl_api.translate(
-                "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                "Hello, world!", Languages.English, Languages.Chinese
             )
             assert result == "你好，世界"
 
     def test_translates_text_correctly_with_network(self, deepl_api):
         result = deepl_api.translate(
-            "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+            "Hello, world!", Languages.English, Languages.Chinese
         )
         assert result == "你好，世界"
 
@@ -67,7 +67,7 @@ class TestDeeplApi:
                 }
             )
             result = deepl_api.translate(
-                "Hello, world!", Languages.AUTO, Languages.ENGLISH
+                "Hello, world!", Languages.Auto, Languages.English
             )
             assert result == "Hello, world."
 
@@ -76,7 +76,7 @@ class TestDeeplApi:
             mock_request.return_value = "{}"
             with pytest.raises(exceptions.ResponseError):
                 deepl_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_json_decode_error(self, deepl_api):
@@ -84,7 +84,7 @@ class TestDeeplApi:
             mock_request.return_value = "Invalid JSON"
             with pytest.raises(exceptions.JsonDecodeError):
                 deepl_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_generic_exception(self, deepl_api):
@@ -92,7 +92,7 @@ class TestDeeplApi:
             mock_request.side_effect = Exception("Some error")
             with pytest.raises(exceptions.UnknownError):
                 deepl_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_translates_with_string_language(self, deepl_api):
@@ -110,7 +110,7 @@ class TestDeeplApi:
             )
             with pytest.raises(exceptions.RequestError):
                 deepl_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_request_error_429(self, deepl_api):
@@ -120,7 +120,7 @@ class TestDeeplApi:
             )
             with pytest.raises(exceptions.RequestError):
                 deepl_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_request_error_456(self, deepl_api):
@@ -130,7 +130,7 @@ class TestDeeplApi:
             )
             with pytest.raises(exceptions.RequestError):
                 deepl_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_request_error_500(self, deepl_api):
@@ -140,7 +140,7 @@ class TestDeeplApi:
             )
             with pytest.raises(exceptions.ServerError):
                 deepl_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )
 
     def test_handles_unknown_error(self, deepl_api):
@@ -150,5 +150,5 @@ class TestDeeplApi:
             )
             with pytest.raises(exceptions.UnknownError):
                 deepl_api.translate(
-                    "Hello, world!", Languages.ENGLISH, Languages.CHINESE
+                    "Hello, world!", Languages.English, Languages.Chinese
                 )

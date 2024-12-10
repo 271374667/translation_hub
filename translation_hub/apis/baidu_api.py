@@ -55,8 +55,8 @@ class BaiduAPI(Api):
     def translate(
         self,
         text: str,
-        source: Languages | str = Languages.ENGLISH,
-        target: Languages | str = Languages.CHINESE,
+        source: Languages | str = Languages.English,
+        target: Languages | str = Languages.Chinese,
     ) -> str:
         text = text.strip()
         is_content_valid: bool = self.content_validator_handler.validate(text)

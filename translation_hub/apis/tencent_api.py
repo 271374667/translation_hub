@@ -74,8 +74,8 @@ class TencentApi(Api):
     def translate(
         self,
         text: str,
-        source: Languages | str = Languages.ENGLISH,
-        target: Languages | str = Languages.CHINESE,
+        source: Languages | str = Languages.English,
+        target: Languages | str = Languages.Chinese,
     ) -> str:
         """
         调用腾讯翻译 API 进行翻译。
