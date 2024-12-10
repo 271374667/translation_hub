@@ -25,7 +25,7 @@ class TestDeeplApi:
     @patch.object(
         cfg,
         "get",
-        side_effect=lambda key: "cfg_api_key" if key == cfg.BaiduSecretKey else None,
+        side_effect=lambda key: "cfg_api_key" if key == cfg.DeeplApiKey else None,
     )
     def test_get_api_key_from_cfg(self, mock_cfg):
         api = DeeplApi()
