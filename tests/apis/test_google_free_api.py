@@ -1,4 +1,4 @@
-from translation_hub.apis.google_api import GoogleApi
+from translation_hub.apis.google_free_api import GoogleFreeApi
 from translation_hub.core.enums import Languages
 import pytest
 
@@ -6,9 +6,9 @@ import pytest
 class TestGoogleApi:
     @pytest.fixture
     def google_api(self):
-        return GoogleApi()
+        return GoogleFreeApi()
 
-    def test_translate_successful(self, google_api: GoogleApi):
+    def test_translate_successful(self, google_api: GoogleFreeApi):
         """测试正常翻译流程"""
         # 中文翻译为日文
         result = google_api.translate(

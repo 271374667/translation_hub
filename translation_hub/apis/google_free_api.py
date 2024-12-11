@@ -11,7 +11,7 @@ from translation_hub.validator_handler import (
 )
 
 
-class GoogleApi(Api):
+class GoogleFreeApi(Api):
     """
     谷歌翻译 API(需要翻墙,无需秘钥,免费)
 
@@ -48,18 +48,15 @@ class GoogleApi(Api):
             response = request.urlopen(url)
             data = response.read().decode("utf-8")
         except urllib.error.HTTPError as e:
-            raise exceptions.RequestError(str(e))
+            raise exceptions.RequestError(str(e)) from e
         except urllib.error.URLError as e:
-            raise exceptions.RequestError(str(e))
+            raise exceptions.RequestError(str(e)) from e
         except Exception as e:
-            raise exceptions.UnknownError(str(e))
+            raise exceptions.UnknownError(str(e)) from e
 
         expr = r'(?s)class="(?:t0|result-container)">(.*?)<'
         result = re.findall(expr, data)
-        if len(result) == 0:
-            return ""
-
-        return html.unescape(result[0])
+        return "" if len(result) == 0 else html.unescape(result[0])
 
     def _trans_language(self, language: Languages | str) -> str:
         """转换语言代码为支持的格式"""

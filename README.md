@@ -37,10 +37,10 @@ print(result)  # 你好
 自定义翻译语言,使用 `Languages` 枚举类来实现屏蔽各大翻译api语言代码
 
 ```python
-from translation_hub import GoogleApi, Languages
+from translation_hub import GoogleFreeApi, Languages
 
 # 谷歌无需传入秘钥
-translator = GoogleApi()
+translator = GoogleFreeApi()
 
 # 自动检测后翻译成中文
 print(translator.translate("hello", Languages.Auto, Languages.Chinese))  # 你好
@@ -53,15 +53,15 @@ print(translator.translate("hello", Languages.English, Languages.Japanese))  # �
 
 目前支持的国内翻译服务(均为有免费额度)：
 
-- [x] 百度翻译
-- [x] 有道翻译
-- [x] 腾讯翻译
-- [x] 阿里翻译
+- [x] 百度翻译 BaiduAPI
+- [x] 有道翻译 YoudaoApi
+- [x] 腾讯翻译 TencentApi
+- [x] 阿里翻译 AliyunApi
 
 目前支持的国外翻译服务：
 
-- [x] deepl翻译
-- [x] 支持谷歌翻译(无需秘钥)
+- [x] deepl翻译 DeeplApi
+- [x] 支持谷歌免费翻译(无需秘钥) GoogleFreeApi
 
 ## Supported Languages 支持的语言
 
@@ -101,25 +101,25 @@ print(deepl.translate("hello", "EN", "DE"))  # hallo
 
 ```json
 {
-    "Aliyun": {
-        "AliyunAppId": "",
-        "AliyunSecretKey": ""
-    },
-    "Baidu": {
-        "BaiduAppId": "",
-        "BaiduSecretKey": ""
-    },
-    "Deepl": {
-        "DeeplApiKey": ""
-    },
-    "Tencent": {
-        "TencentAppId": "",
-        "TencentSecretKey": ""
-    },
-    "Youdao": {
-        "YoudaoAppId": "",
-        "YoudaoSecretKey": ""
-    }
+  "Aliyun": {
+    "AliyunAppId": "",
+    "AliyunSecretKey": ""
+  },
+  "Baidu": {
+    "BaiduAppId": "",
+    "BaiduSecretKey": ""
+  },
+  "Deepl": {
+    "DeeplApiKey": ""
+  },
+  "Tencent": {
+    "TencentAppId": "",
+    "TencentSecretKey": ""
+  },
+  "Youdao": {
+    "YoudaoAppId": "",
+    "YoudaoSecretKey": ""
+  }
 }
 ```
 
@@ -128,6 +128,7 @@ print(deepl.translate("hello", "EN", "DE"))  # hallo
 环境变量是一种更加安全的存储方式，翻译器对象会自动读取环境变量中的秘钥
 
 您需要自行设置环境变量，变量名如下:
+
 ```text
 AliyunAppId
 AliyunSecretKey
@@ -149,8 +150,8 @@ YoudaoSecretKey
 3. 在"系统属性"窗口中，选择"高级"选项卡
 4. 点击右下角的"环境变量"按钮
 5. 在"环境变量"窗口中:
-   - 上半部分是"用户变量"(仅对当前用户有效)
-   - 下半部分是"系统变量"(对所有用户有效)
+    - 上半部分是"用户变量"(仅对当前用户有效)
+    - 下半部分是"系统变量"(对所有用户有效)
 6. 点击"新建"添加新变量，或选择已有变量点击"编辑"
 7. 输入变量名和变量值
 8. 连续点击"确定"保存所有更改
