@@ -5,8 +5,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.6.13](https://github.com/271374667/translatehub/compare/v0.2.15...v0.6.13) - 2025-03-15
+
+- ✨ feat: 添加百度翻译API支持，允许无需秘钥的翻译 [`e6e0c65`](https://github.com/271374667/translatehub/commit/e6e0c6510ca7aee3a4ec565920d6c23429788e6e)
+- ✨ feat(README.md)：更新文档以反映Google翻译API的更改 [`309b23c`](https://github.com/271374667/translatehub/commit/309b23cd101edd6d71743abd21713bdd4417960a)
+- ✨ feat(tests)：添加Google翻译API的单元测试 [`b31ebbc`](https://github.com/271374667/translatehub/commit/b31ebbc3f3fdf7664d5e8292ae4c20c0fdd0f151)
+- 📝 docs(README.md)：更新文档以添加翻译服务支持和配置说明 [`c15f50b`](https://github.com/271374667/translatehub/commit/c15f50b0b7658577845da2dcc048e2955a9a71c2)
+
 ## [v0.2.15](https://github.com/271374667/translatehub/compare/v0.2.11...v0.2.15) - 2024-12-10
 
+- 📝 docs(CHANGELOG.md)：更新CHANGELOG以记录v0.2.15版本的变化和改进 [`2888c7d`](https://github.com/271374667/translatehub/commit/2888c7dcc60aa319626d8bed388a83d515aae159)
 - ✨ feat(python-publish.yml)：添加对发布事件的支持以触发工作流 [`772f393`](https://github.com/271374667/translatehub/commit/772f393364e022955d302bd756b119955f8b4be5)
 - fix: 修复了打包之后只有INFO包的错误 [`9b016eb`](https://github.com/271374667/translatehub/commit/9b016eb3f1b7d68524358879532a990923b91108)
 - 📝 docs(CHANGELOG.md)：更新CHANGELOG以记录v0.2.11版本的变化和改进 [`c2e8d0c`](https://github.com/271374667/translatehub/commit/c2e8d0c8360d7e3767df6d497bce5639c8d165f0)

@@ -1,6 +1,6 @@
 [project]
 name = "translation_hub"
-version = "0.2.15"
+version = "0.6.13"
 description = "没有任何依赖的翻译库，API 统一简单易用，适合快速集成翻译功能而不想引入庞大的依赖库"
 authors = [
     { name = "PythonImporter", email = "271374667@qq.com" }
