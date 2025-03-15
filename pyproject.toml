@@ -5,7 +5,9 @@ description = "没有任何依赖的翻译库，API 统一简单易用，适合�
 authors = [
     { name = "PythonImporter", email = "271374667@qq.com" }
 ]
-dependencies = []
+dependencies = [
+    "requests>=2.32.3",
+]
 readme = "README.md"
 requires-python = ">= 3.10"
 
@@ -21,6 +23,7 @@ build-backend = "hatchling.build"
 managed = true
 dev-dependencies = [
     "pytest>=8.3.4",
+    "python-dotenv>=1.0.1",
 ]
 
 [tool.hatch.metadata]

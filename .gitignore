@@ -11,3 +11,4 @@ wheels/
 .idea
 代码指导
 测试
+.env
