@@ -28,6 +28,11 @@ class BaiduFreeAPI(Api):
         if not text:
             return ""
 
+        if source is Languages.Auto:
+            raise exceptions.InvalidLanguageError(
+                "免费百度翻译不支持自动检测语言,请手动指定源语言"
+            )
+
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36",
             "Accept": "text/event-stream",

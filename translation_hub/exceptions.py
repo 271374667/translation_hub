@@ -59,3 +59,12 @@ class UnknownError(Exception):
 
     def __str__(self):
         return f"UnknownError: {self.message}"
+
+
+class InvalidLanguageError(Exception):
+    def __init__(self, message="语言错误: 请检查语言是否正确"):
+        self.message = message
+        super().__init__(self.message)
+
+    def __str__(self):
+        return f"InvalidLanguageError: {self.message}"

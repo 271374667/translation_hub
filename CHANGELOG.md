@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.6.14](https://github.com/271374667/translatehub/compare/v0.6.13...v0.6.14) - 2025-03-15
+
+- 🚀 release: 更新版本号至0.6.14并记录变更 [`60630eb`](https://github.com/271374667/translatehub/commit/60630ebb02c46e8f89ae95897e2bf91e81e2e180)
+
 ## [v0.6.13](https://github.com/271374667/translatehub/compare/v0.2.15...v0.6.13) - 2025-03-15
 
 - ✨ feat: 添加百度翻译API支持，允许无需秘钥的翻译 [`e6e0c65`](https://github.com/271374667/translatehub/commit/e6e0c6510ca7aee3a4ec565920d6c23429788e6e)
