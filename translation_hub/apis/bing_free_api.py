@@ -40,7 +40,7 @@ class BingFreeApi(Api):
     def translate(
         self,
         text: str,
-        source: Languages | str = Languages.English,
+        source: Languages | str = Languages.Auto,
         target: Languages | str = Languages.Chinese,
     ) -> str:
         text: str = text.strip()

@@ -21,7 +21,20 @@ pip install translation-hub
 
 ## QuickStart 快速开始
 
-只需要定义一个翻译器对象，传入秘钥，然后调用 `translate` 方法即可。
+可以直接使用无需秘钥的版本进行翻译，使用此类方法需要注意获取频率，频率过快会被服务器封禁
+
+```python
+from translation_hub import BingFreeApi
+
+translator = BingFreeApi()
+result = translator.translate("hello")
+
+print(result)  # 你好
+```
+
+
+
+如果需要使用 API 的付费版本则可以用更高的频率请求服务器，方法也很简单，只需要定义一个翻译器对象，传入秘钥，然后调用 `translate` 方法即可。
 
 同时支持直接传入,本地存储秘钥以及从环境变量获取秘钥
 
@@ -34,13 +47,13 @@ result = translator.translate("hello")
 print(result)  # 你好
 ```
 
-自定义翻译语言,使用 `Languages` 枚举类来实现屏蔽各大翻译api语言代码
+通过传入 `Languages` 枚举类实现将文本翻译成不同的语言版本，同时您也可以自行传入翻译平台支持的字符串
 
 ```python
-from translation_hub import GoogleFreeApi, Languages
+from translation_hub import BingFreeApi, Languages
 
-# 谷歌无需传入秘钥
-translator = GoogleFreeApi()
+# bing 无需传入秘钥
+translator = BingFreeApi()
 
 # 自动检测后翻译成中文
 print(translator.translate("hello", Languages.Auto, Languages.Chinese))  # 你好
@@ -51,21 +64,30 @@ print(translator.translate("hello", Languages.English, Languages.Japanese))  # �
 
 ## Supported Translation Services 支持的翻译服务
 
-无需秘钥的翻译服务(需要注意访问频率限制,反爬随时可能更新导致失效)：
+<center>表1 无需秘钥的翻译服务(需要注意访问频率限制,反爬随时可能更新导致失效)</center>
 
-- [x] 百度翻译 BaiduFreeApi
-- [x] 谷歌翻译 GoogleFreeApi(需要翻墙)
+|      翻译名称      |   API 名称    |
+| :----------------: | :-----------: |
+|      百度翻译      | BaiduFreeApi  |
+|     bing 翻译      |  BingFreeApi  |
+| 谷歌翻译(需要翻墙) | GoogleFreeApi |
 
-目前支持的国内翻译服务(均为有免费额度)：
+<center>表2 目前支持的国内翻译服务(均为有免费额度)</center>
 
-- [x] 百度翻译 BaiduAPI
-- [x] 有道翻译 YoudaoApi
-- [x] 腾讯翻译 TencentApi
-- [x] 阿里翻译 AliyunApi
+| 翻译名称 |  API名称   |
+| :------: | :--------: |
+| 百度翻译 |  BaiduAPI  |
+| 有道翻译 | YoudaoApi  |
+| 腾讯翻译 | TencentApi |
+| 阿里翻译 | AliyunApi  |
 
-目前支持的国外翻译服务：
+<center>表3 目前支持的国外翻译服务</center>
 
-- [x] deepl翻译 DeeplApi
+| 翻译名称  | API名称  |
+| --------- | -------- |
+| deepl翻译 | DeeplApi |
+
+
 
 ## Supported Languages 支持的语言
 
