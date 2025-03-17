@@ -7,6 +7,9 @@ from translation_hub.api import Api
 from translation_hub.core.enums import Languages
 from translation_hub import exceptions
 import json
+from translation_hub.validator_handler import (
+    ContentValidatorHandler,
+)
 
 
 class BaiduFreeAPI(Api):
@@ -15,7 +18,13 @@ class BaiduFreeAPI(Api):
 
     百度翻译随时可能会改变接口，不保证长期可用。目前测试正常。
     使用的时候注意请求频率，不要频繁请求，否则可能会被百度限制。
+
+    Notes:
+        免费的百度翻译不支持自动检测语言,请手动指定源语言
     """
+
+    def __init__(self):
+        self.content_validator_handler = ContentValidatorHandler()
 
     api_url: str = "https://fanyi.baidu.com/ait/text/translate"
 
@@ -25,8 +34,11 @@ class BaiduFreeAPI(Api):
         source: Languages | str = Languages.English,
         target: Languages | str = Languages.Chinese,
     ) -> str:
-        if not text:
-            return ""
+        text: str = text.strip()
+
+        is_content_valid: bool = self.content_validator_handler.validate(text)
+        if not is_content_valid:
+            raise exceptions.InvalidContentError(f"Invalid content: {text}")
 
         if source is Languages.Auto:
             raise exceptions.InvalidLanguageError(
