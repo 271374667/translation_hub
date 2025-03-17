@@ -28,6 +28,7 @@ class BingFreeApi(Api):
 
     def __init__(self):
         self.content_validator_handler = ContentValidatorHandler()
+        self._session = requests.Session()
 
         self._headers = {
             "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36 Edg/129.0.0.0"
@@ -65,16 +66,17 @@ class BingFreeApi(Api):
         }
 
         try:
-            response = requests.post(
+            response = self._session.post(
                 self.api_url, data=self._data, headers=self._headers, params=params
             )
-            logging.debug(f"Response: {response.text}")
             result = response.json()[0]["translations"][0]["text"]
             if not result:
                 raise exceptions.ResponseError("Empty response")
             return result
         except requests.RequestException as e:
             raise exceptions.RequestError(str(e)) from e
+        except KeyError as e:
+            raise exceptions.ResponseError(f"KeyError: {e}")
         except json.JSONDecodeError as e:
             raise exceptions.JsonDecodeError(f"Failed to decode response: {e}")
         except Exception as e:
@@ -98,7 +100,7 @@ class BingFreeApi(Api):
     def _get_payload(self, source: str, target: str) -> dict:
         # 先请求一次网站获取到请求头
         try:
-            response = requests.get(self.host_url, headers=self._headers)
+            response = self._session.get(self.host_url, headers=self._headers)
             html = response.text
             # 获取data-iid
             self._data_iid = re.search(self.iid_regex, html).group(1)
@@ -122,9 +124,3 @@ class BingFreeApi(Api):
             raise exceptions.RequestError(
                 f"There are something wrong with the network: {e}"
             )
-
-
-if __name__ == "__main__":
-    bing_api = BingFreeApi()
-    result = bing_api.translate("Hello, world!", Languages.English, Languages.Chinese)
-    print(result)
