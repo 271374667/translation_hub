@@ -39,9 +39,9 @@ print(result)  # 你好
 同时支持直接传入,本地存储秘钥以及从环境变量获取秘钥
 
 ```python
-from translation_hub import BaiduAPI
+from translation_hub import BaiduApi
 
-translator = BaiduAPI("your appid", "secret_key")
+translator = BaiduApi("your appid", "secret_key")
 result = translator.translate("hello")
 
 print(result)  # 你好
@@ -64,24 +64,25 @@ print(translator.translate("hello", Languages.English, Languages.Japanese))  # �
 
 ## Supported Translation Services 支持的翻译服务
 
-<center>表1 无需秘钥的翻译服务(需要注意访问频率限制,反爬随时可能更新导致失效)</center>
+<p align="center">表1 无需秘钥的翻译服务(需要注意访问频率限制,反爬随时可能更新导致失效)</p>
 
 |      翻译名称      |   API 名称    |
 | :----------------: | :-----------: |
 |      百度翻译      | BaiduFreeApi  |
 |     bing 翻译      |  BingFreeApi  |
+|      搜狗翻译      | SoGouFreeApi  |
 | 谷歌翻译(需要翻墙) | GoogleFreeApi |
 
-<center>表2 目前支持的国内翻译服务(均为有免费额度)</center>
+<p align="center">表2 目前支持的国内翻译服务(均为有免费额度)</p>
 
 | 翻译名称 |  API名称   |
 | :------: | :--------: |
-| 百度翻译 |  BaiduAPI  |
+| 百度翻译 |  BaiduApi  |
 | 有道翻译 | YoudaoApi  |
 | 腾讯翻译 | TencentApi |
 | 阿里翻译 | AliyunApi  |
 
-<center>表3 目前支持的国外翻译服务</center>
+<p align="center">表3 目前支持的国外翻译服务</p>
 
 | 翻译名称  | API名称  |
 | --------- | -------- |

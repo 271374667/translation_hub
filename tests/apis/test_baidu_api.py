@@ -1,7 +1,7 @@
 import json
 import os
 import pytest
-from translation_hub.apis.baidu_api import BaiduAPI
+from translation_hub.apis.baidu_api import BaiduApi
 from translation_hub.core.enums import Languages
 from unittest.mock import patch
 from translation_hub import exceptions
@@ -10,15 +10,15 @@ from translation_hub.config import cfg
 
 @pytest.fixture
 def baidu_api():
-    return BaiduAPI(api_id=cfg.get(cfg.BaiduAppId), api_key=cfg.get(cfg.BaiduSecretKey))
+    return BaiduApi(api_id=cfg.get(cfg.BaiduAppId), api_key=cfg.get(cfg.BaiduSecretKey))
 
 
-class TestBaiduAPI:
+class TestBaiduApi:
     @patch.dict(
         os.environ, {"BaiduAppId": "env_api_id", "BaiduSecretKey": "env_api_key"}
     )
     def test_get_api_id_and_key_from_env(self):
-        api = BaiduAPI()
+        api = BaiduApi()
         assert api.api_id == "env_api_id"
         assert api.api_key == "env_api_key"
 
@@ -30,12 +30,12 @@ class TestBaiduAPI:
         else "cfg_api_key",
     )
     def test_get_api_id_and_key_from_cfg(self, mock_cfg):
-        api = BaiduAPI()
+        api = BaiduApi()
         assert api.api_id == "cfg_api_id"
         assert api.api_key == "cfg_api_key"
 
     def test_get_api_id_and_key_directly(self):
-        api = BaiduAPI(api_id="direct_api_id", api_key="direct_api_key")
+        api = BaiduApi(api_id="direct_api_id", api_key="direct_api_key")
         assert api.api_id == "direct_api_id"
         assert api.api_key == "direct_api_key"
 
@@ -43,7 +43,7 @@ class TestBaiduAPI:
     @patch.object(cfg, "get", return_value=None)
     def test_get_api_id_and_key_error(self, mock_cfg):
         with pytest.raises(exceptions.InvalidSecretKeyError):
-            BaiduAPI()
+            BaiduApi()
 
     def test_translates_text_correctly(self, baidu_api):
         with patch("translation_hub.apis.baidu_api.request") as mock_request:

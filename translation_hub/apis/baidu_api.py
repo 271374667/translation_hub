@@ -14,7 +14,7 @@ import os
 from translation_hub.config import cfg
 
 
-class BaiduAPI(Api):
+class BaiduApi(Api):
     """
     百度翻译 API
 
