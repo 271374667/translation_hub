@@ -5,9 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [v0.12.4](https://github.com/271374667/translatehub/compare/v0.11.7...v0.12.4) - 2025-03-18
+
+- ✨ feat(翻译服务)：添加搜狗翻译API支持 [`d482eef`](https://github.com/271374667/translatehub/commit/d482eef0cb35d40a165d9ae1df28d235982efb76)
+
 ## [v0.11.7](https://github.com/271374667/translatehub/compare/v0.6.14...v0.11.7) - 2025-03-17
 
-- 📝 docs(README.md)：更新快速开始部分，添加无秘钥翻译示例 [`d96d749`](https://github.com/271374667/translatehub/commit/d96d7492f6be978caf80a0424113d51e3197446e)
+- 📝 docs(README.md)：更新快速开始部分，添加无秘钥翻译示例 [`b5b7964`](https://github.com/271374667/translatehub/commit/b5b79641422c5adf78bb94c2605bcc9460e56d47)
 - ✨ feat(bing_free_api.py)：添加Bing翻译API的实现及测试用例 [`3989148`](https://github.com/271374667/translatehub/commit/39891487d42086d5ea5332d604f027368c904d86)
 - ✨ feat(baidu_free_api.py, bing_free_api.py)：为翻译API添加内容验证功能 [`d359c79`](https://github.com/271374667/translatehub/commit/d359c796fda9ae8b58adaf79bcd2b2cc0a9d4699)
 - 📝 更新(CHANGELOG.md)：记录版本0.6.14的发布及变更 [`652b6a0`](https://github.com/271374667/translatehub/commit/652b6a0fd091b1e65ecaf3d6e2c5f67fed124f84)

@@ -4,38 +4,22 @@ import pytest
 
 
 class TestGoogleApi:
-    @pytest.fixture
-    def google_api(self):
-        return GoogleFreeApi()
-
-    def test_translate_successful(self, google_api: GoogleFreeApi):
+    @pytest.mark.parametrize('text, source, target, result', [
+        # 中英互译
+        ("你好", Languages.Chinese, Languages.English, "Hello"),
+        ("Hello", Languages.English, Languages.Chinese, "你好"),
+        # 中日互译
+        ("你好", Languages.Chinese, Languages.Japanese, "こんにちは"),
+        ("こんにちは", Languages.Japanese, Languages.Chinese, "你好"),
+        # 其他测试
+        ("你吃饭了么?", Languages.Chinese, Languages.Japanese, "食事はありましたか？"),
+        ("about your situation", Languages.English, Languages.Chinese, "关于您的情况"),
+        ("about your situation", Languages.English, Languages.Korea, "당신의 상황에 대해"),
+        ("about your situation", Languages.English, Languages.Russia, "о вашей ситуации"),
+        ("about your situation", Languages.Auto, Languages.Chinese, "关于您的情况"),
+    ])
+    def test_translate_successful(self, text: str, source: Languages|str, target: Languages|str, result: str):
         """测试正常翻译流程"""
-        # 中文翻译为日文
-        result = google_api.translate(
-            "你吃饭了么?", Languages.Chinese, Languages.Japanese
-        )
-        assert result == "食べましたか？"
-
-        # 英文翻译为中文
-        result = google_api.translate(
-            "about your situation", Languages.English, Languages.Chinese
-        )
-        assert result == "关于你的情况"
-
-        # 英语翻译成韩文
-        result = google_api.translate(
-            "about your situation", Languages.English, Languages.Korea
-        )
-        assert result == "당신의 상황에 대해서"
-
-        # 英文翻译成俄文
-        result = google_api.translate(
-            "about your situation", Languages.English, Languages.Russia
-        )
-        assert result == "о вашей ситуации"
-
-        # 自动翻译成中文
-        result = google_api.translate(
-            "about your situation", Languages.Auto, Languages.Chinese
-        )
-        assert result == "关于你的情况"
+        google_api = GoogleFreeApi()
+        response = google_api.translate(text, source, target)
+        assert response == result
